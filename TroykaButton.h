@@ -16,15 +16,16 @@ class TroykaButton
 {
 public:
     TroykaButton(uint8_t pin, bool pullUP = true);
+    // инициализация кнопки
     void begin();
     // считывание данных с кнопки
     void read(uint32_t time = 2000);
     // определение клика кнопки
-    bool onPress();
+    bool justPressed() const;
     // определение отжатие кнопки
-    bool onRelease();
+    bool justReleased() const;
     // определение зажатие кнопки (по умолчанию 2 секунды)
-    bool isPressed(uint32_t time = 2000);
+    bool isHold(uint32_t time = 2000) const;
 private:
     // номера пина
     uint8_t	_pin;

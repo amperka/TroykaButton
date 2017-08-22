@@ -1,7 +1,7 @@
 #include "TroykaButton.h"
 
 // создаём объект для работы с кнопкой
-TroykaButton button(0);
+TroykaButton button(4);
 
 void setup()
 {
@@ -13,16 +13,19 @@ void setup()
 
 void loop() 
 {
+  // считывание данных с кнопки
+  button.read();
   // опеределяем клик кнопки
-  if (button.onPress()) {
+  if (button.justPressed()) {
     Serial.println("Key on press");
   }
   // определяем отжатие кнопки
-  if (button.onRelease()) {
+  if (button.justReleased()) {
     Serial.println("Key is release");
   }
+  
   // определяем зажатие кнопки на 3 секунды
-  if (button.isPressed(3000)) {
+  else if (button.isHold(3000)) {
     Serial.println("Key on long press");
   }
 }

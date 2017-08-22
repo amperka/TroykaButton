@@ -13,6 +13,7 @@ void TroykaButton::begin() {
 
 // считывание состояние кнопки
 void TroykaButton::read(uint32_t time) {
+    _state = false;
     bool buttonStateNow = !digitalRead(_pin);
     if (!_pullUP) {
         buttonStateNow = !buttonStateNow;
@@ -23,46 +24,28 @@ void TroykaButton::read(uint32_t time) {
         _state = ON_PRESS;
     }
     if (!buttonStateNow && buttonStateNow != _buttonStateWas &&  !_buttonStateNowLong && time && millis() - _msButtonState > DEBOUNCE_TIME) {
-        _state = ON_RELEASE;
         _msButtonState = millis();
+        _state = ON_RELEASE;
     }
     if (buttonStateNow && !_buttonStateNowLong && millis() - _msButtonState > time) {
         _buttonStateNowLong = true;
-        _state = ON_PRESS_LONG;
         _msButtonState = millis();
+        _state = ON_PRESS_LONG;
     }
     _buttonStateWas = buttonStateNow;
 }
 
 // определение клика кнопки
-bool TroykaButton::onPress() {
-    read();
-    if (_state == ON_PRESS) {
-        _state = false;
-        return true;
-    } else {
-        return false;
-    }
+bool TroykaButton::justPressed() const {
+    return _state == ON_PRESS ? 1 : 0;
 }
 
 // определение отжатие кнопки
-bool TroykaButton::onRelease() {
-    read();
-    if (_state == ON_RELEASE) {
-        _state = false;
-        return true;
-    } else {
-        return false;
-    }
+bool TroykaButton::justReleased() const {
+    return _state == ON_RELEASE ? 1 : 0;
 }
 
 // определение зажатие кнопки (по умолчанию 2 секунды)
-bool TroykaButton::isPressed(uint32_t time) {
-    read(time);
-    if (_state == ON_PRESS_LONG) {
-        _state = false;
-        return true;
-    } else {
-        return false;
-    }
+bool TroykaButton::isHold(uint32_t time) const {
+    return _state == ON_PRESS_LONG ? 1 : 0;
 }

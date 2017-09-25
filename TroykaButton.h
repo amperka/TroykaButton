@@ -15,30 +15,32 @@
 class TroykaButton
 {
 public:
-    TroykaButton(uint8_t pin, bool pullUP = true);
+    TroykaButton(uint8_t pin, uint32_t timeHold = 2000, bool pullUP = true);
     // инициализация кнопки
     void begin();
     // считывание данных с кнопки
-    void read(uint32_t time = 2000);
+    void read();
     // определение клика кнопки
     bool justPressed() const;
     // определение отжатие кнопки
     bool justReleased() const;
     // определение зажатие кнопки (по умолчанию 2 секунды)
-    bool isHold(uint32_t time = 2000) const;
+    bool isHold() const;
 private:
     // номера пина
-    uint8_t	_pin;
+    uint8_t _pin;
+    // время длительного зажатия кнопки
+    uint32_t _timeHold;
     // выбор подтяжки
     bool _pullUP;
+    // состояние кнопки
+    uint8_t _stateButton;
     // ранее состояние кнопки
     bool _buttonStateWas;
-    // время нажатия кнопки
-    uint32_t _msButtonState;
-    // состояние системы
-    uint8_t _state;
     // длинное нажатие
     bool _buttonStateNowLong;
+    // время нажатия кнопки
+    uint32_t _msButtonState;
 };
 
 #endif

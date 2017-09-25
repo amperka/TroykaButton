@@ -24,7 +24,7 @@ void TroykaButton::read() {
         _msButtonState = millis();
         _stateButton = ON_PRESS;
     }
-    if (!buttonStateNow && buttonStateNow != _buttonStateWas &&  !_buttonStateNowLong && _timeHold && millis() - _msButtonState > DEBOUNCE_TIME) {
+    if (!buttonStateNow && buttonStateNow != _buttonStateWas &&  !_buttonStateNowLong && millis() - _msButtonState > DEBOUNCE_TIME) {
         _msButtonState = millis();
         _stateButton = ON_RELEASE;
     }

@@ -1,3 +1,12 @@
+/****************************************************************************/
+//  Function:       Cpp file for TroykaButton
+//  Arduino IDE:    Arduino-1.8.5
+//  Author:         Igor Dementiev
+//  Date:           Sep 09,2018
+//  Version:        v1.0
+//  by www.amperka.ru
+/****************************************************************************/
+
 #include "TroykaButton.h"
 
 TroykaButton::TroykaButton(uint8_t pin, uint32_t timeHold, bool pullUP) {
@@ -24,7 +33,7 @@ void TroykaButton::read() {
         _msButtonState = millis();
         _stateButton = ON_PRESS;
     }
-    if (!buttonStateNow && buttonStateNow != _buttonStateWas &&  !_buttonStateNowLong && millis() - _msButtonState > DEBOUNCE_TIME) {
+    if (!buttonStateNow && buttonStateNow != _buttonStateWas && millis() - _msButtonState > DEBOUNCE_TIME) {
         _msButtonState = millis();
         _stateButton = ON_RELEASE;
     }

@@ -1,3 +1,12 @@
+/****************************************************************************/
+//  Function:       Header file for TroykaButton
+//  Arduino IDE:    Arduino-1.8.5
+//  Author:         Igor Dementiev
+//  Date:           Sep 09,2018
+//  Version:        v1.0
+//  by www.amperka.ru
+/****************************************************************************/
+
 #ifndef _TROYKA_BUTTON_H_
 #define _TROYKA_BUTTON_H_
 

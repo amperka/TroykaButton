@@ -1,0 +1,19 @@
+#######################################
+# Syntax Coloring Map TroykaButton
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+TroykaButton 	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin			KEYWORD2
+read 			KEYWORD2
+justPressed		KEYWORD2
+justReleased	KEYWORD2
+isHold 			KEYWORD2

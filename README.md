@@ -1,9 +1,13 @@
 TroykaButton
 ============
 
-Библиотека для Arduino, позволяющая работать с кнопками:
+Библиотека поможет считывать состояния кнопки: нажатие, отжатие и зажатие. 
+Программный модуль также позволяет программно избавиться от дребезга контактов.
+
+Библиотека будет полезна для кнопок:
+* [Кнопка (Troyka-модуль)](http://amperka.ru/product/troyka-button)
 * [Кнопка со светодиодом (Troyka-модуль)](http://amperka.ru/product/troyka-led-button)
-* [Кнопка (Troyka-модуль)](http://amperka.ru/product/troyka-button) 
+* [Сенсорная кнопка (Troyka-модуль)](http://amperka.ru/product/troyka-touch-sensor)
 * [Четырёхкнопочная клавиатура (Troyka-модуль)](http://amperka.ru/product/troyka-quad-switch)
 * [Кнопка тактовая](http://amperka.ru/product/tactile-button)
 * [Кнопка тактовая с колпачком](http://amperka.ru/product/big-tactile-button)

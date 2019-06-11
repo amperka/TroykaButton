@@ -29,4 +29,8 @@ void loop()
   if (button.isHold()) {
     Serial.println("Key on long press");
   }
+  // определяем короткое нажатие кнопки
+  if (button.isClick()) {
+    Serial.println("Key is clicked");
+  }
 }

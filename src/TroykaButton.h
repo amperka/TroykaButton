@@ -35,6 +35,8 @@ public:
     bool justReleased() const;
     // определение зажатие кнопки (по умолчанию 2 секунды)
     bool isHold() const;
+    // определение короткого клика, если сработал метод isHold() клик не сработает.
+    bool isClick() const;
 private:
     // номера пина
     uint8_t _pin;
@@ -42,8 +44,12 @@ private:
     uint32_t _timeHold;
     // выбор подтяжки
     bool _pullUP;
+    // короткое нажатие кнопки (клик)
+    bool _isClick;
     // состояние кнопки
     uint8_t _stateButton;
+    // предыдущие состояние кнопки
+    uint8_t _buttonStateOld;
     // ранее состояние кнопки
     bool _buttonStateWas;
     // длинное нажатие

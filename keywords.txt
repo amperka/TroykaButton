@@ -17,3 +17,4 @@ read 			KEYWORD2
 justPressed		KEYWORD2
 justReleased	KEYWORD2
 isHold 			KEYWORD2
+isClick			KEYWORD2

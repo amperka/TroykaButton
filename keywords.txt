@@ -18,3 +18,4 @@ justPressed		KEYWORD2
 justReleased	KEYWORD2
 isHold 			KEYWORD2
 isClick			KEYWORD2
+isClickOnHold   KEYWORD2

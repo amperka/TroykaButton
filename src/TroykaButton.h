@@ -17,6 +17,7 @@
 #endif
 
 #define DEBOUNCE_TIME   50
+#define NONE            0
 #define ON_PRESS        1
 #define ON_PRESS_LONG   2
 #define ON_RELEASE      3
@@ -24,7 +25,7 @@
 class TroykaButton
 {
 public:
-    TroykaButton(uint8_t pin, uint32_t timeHold = 2000, bool pullUP = true);
+    TroykaButton(uint8_t pin, uint32_t timeHold = 2000, bool pullUP = true, uint32_t repeatDelay = 0);
     // инициализация кнопки
     void begin();
     // считывание данных с кнопки
@@ -37,25 +38,33 @@ public:
     bool isHold() const;
     // определение короткого клика, если сработал метод isHold() клик не сработает.
     bool isClick() const;
+    // определение автоматических кликов при длинном удержании
+    bool isClickOnHold() const;
 private:
     // номера пина
     uint8_t _pin;
     // время длительного зажатия кнопки
     uint32_t _timeHold;
+    // интервал повторного срабатывания кнопки при зажатии
+    uint32_t _repeatDelay;
     // выбор подтяжки
     bool _pullUP;
     // короткое нажатие кнопки (клик)
     bool _isClick;
-    // состояние кнопки
-    uint8_t _stateButton;
-    // предыдущие состояние кнопки
-    uint8_t _buttonStateOld;
+    // автоматический клик при зажатии кнопки
+    bool _isClickOnHold;
+    // информация о состоянии кнопки
+    uint8_t _buttonEventState;
+    // информация о предыдущием состоянии кнопки
+    uint8_t _buttonEventStateOld;
     // ранее состояние кнопки
     bool _buttonStateWas;
     // длинное нажатие
-    bool _buttonStateNowLong;
-    // время нажатия кнопки
-    uint32_t _msButtonState;
+    bool _buttonIsOnHold;
+    // время прошлого переключения кнопки
+    uint32_t _lastDebouceTimeMs;
+    // время прошлого переключения кнопки
+    uint32_t _lastClickTimeMs;
 };
 
 #endif

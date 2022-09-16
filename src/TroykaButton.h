@@ -40,6 +40,11 @@ public:
     bool isClick() const;
     // определение автоматических кликов при длинном удержании
     bool isClickOnHold() const;
+    // Отпущена ли кнопка
+    bool isReleased() const;
+    // Нажата ли кнопка
+    bool isPressed() const;
+
 private:
     // номера пина
     uint8_t _pin;
@@ -57,6 +62,8 @@ private:
     uint8_t _buttonEventState;
     // информация о предыдущием состоянии кнопки
     uint8_t _buttonEventStateOld;
+    // состояние кнопки в данный момент
+    bool _buttonStateNow;
     // ранее состояние кнопки
     bool _buttonStateWas;
     // длинное нажатие

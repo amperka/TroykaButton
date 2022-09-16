@@ -19,3 +19,5 @@ justReleased	KEYWORD2
 isHold 			KEYWORD2
 isClick			KEYWORD2
 isClickOnHold   KEYWORD2
+isPressed       KEYWORD2
+isReleased      KEYWORD2

@@ -22,11 +22,11 @@ void loop()
   button.read();
   // опеределяем клик кнопки
   if (button.justPressed()) {
-    Serial.println("Key on press");
+    Serial.println("Key is just pressed");
   }
   // определяем отжатие кнопки
   if (button.justReleased()) {
-    Serial.println("Key is release");
+    Serial.println("Key is just released");
   }
   // определяем длительное зажатие кнопки
   if (button.isHold()) {

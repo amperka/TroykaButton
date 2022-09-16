@@ -21,6 +21,7 @@ void TroykaButton::begin() {
     pinMode(_pin, _pullUP ? INPUT_PULLUP : INPUT);
     _lastDebouceTimeMs = 0;
     _buttonStateWas = 0;
+    _buttonStateNow = 0;
     _isClick = false;
     _isClickOnHold = false;
     _buttonEventState = NONE;
@@ -35,23 +36,23 @@ void TroykaButton::read() {
     _isClickOnHold = false;
     _buttonIsOnHold = false;
     // Считываем текущее состояние кнопки
-    bool buttonStateNow = digitalRead(_pin);
+    _buttonStateNow = digitalRead(_pin);
 
     // Инвертируем значение если включена подтяжка
     if (_pullUP)
-        buttonStateNow = !buttonStateNow;
+        _buttonStateNow = !_buttonStateNow;
 
     // Обработка кнопки
 
     uint32_t timeNow = millis();
 
-    if (buttonStateNow != _buttonStateWas) {// Если произошло новое событие
+    if (_buttonStateNow != _buttonStateWas) {// Если произошло новое событие
         if (timeNow - _lastDebouceTimeMs < DEBOUNCE_TIME) { // Если время нас не устраивает то это дребезг
             _lastDebouceTimeMs = timeNow;
             return;
         }
 
-        if (buttonStateNow) {
+        if (_buttonStateNow) {
             _buttonEventState = ON_PRESS; // Клавиша нажата
         } else {
             _buttonEventState = ON_RELEASE; // Клавиша отпущена
@@ -61,7 +62,7 @@ void TroykaButton::read() {
         _lastDebouceTimeMs = timeNow;
 
     } else { // Если события не произошло
-        if (buttonStateNow && ((timeNow - _lastDebouceTimeMs) > _timeHold)) { // Если клавиша зажата и с прошлого нажатия прошло время
+        if (_buttonStateNow && ((timeNow - _lastDebouceTimeMs) > _timeHold)) { // Если клавиша зажата и с прошлого нажатия прошло время
             _buttonIsOnHold = true; // То это длительное нажатие
             _buttonEventState = ON_PRESS_LONG;
             if (_repeatDelay && ((timeNow - _lastClickTimeMs) > _repeatDelay)) {
@@ -74,7 +75,7 @@ void TroykaButton::read() {
     if (_buttonEventState)
         _buttonEventStateOld = _buttonEventState;
 
-    _buttonStateWas = buttonStateNow;
+    _buttonStateWas = _buttonStateNow;
 }
 
 // определение клика кнопки
@@ -100,4 +101,14 @@ bool TroykaButton::isClick() const {
 // определение автоматических кликов при длинном удержании
 bool TroykaButton::isClickOnHold() const {
     return _isClickOnHold;
+}
+
+// Отпущена ли кнопка
+bool TroykaButton::isReleased() const {
+    return !_buttonStateNow;
+}
+
+// Нажата ли кнопка
+bool TroykaButton::isPressed() const {
+    return _buttonStateNow;
 }
